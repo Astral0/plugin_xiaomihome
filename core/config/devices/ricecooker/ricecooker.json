@@ -1,0 +1,12 @@
+{
+	"ricecooker": {
+		"name": "Cuiseur de riz",
+		"groupe" : "Wifi",
+		"configuration" : {
+			"model" : "ricecooker",
+			"type" : "wifi"
+		},
+        "commands": [        
+        ]
+    }
+}

@@ -1,0 +1,358 @@
+{
+	"fan": {
+		"name": "Ventilateur",
+		"groupe" : "Wifi",
+		"configuration" : {
+			"model" : "fan",
+			"type" : "wifi",
+			"battery_type" : "Batterie"
+		},
+        "commands": [
+            {
+                "name": "Online",
+                "type": "info",
+                "subtype": "binary",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 0,
+                "isHistorized": 0,
+                "logicalId": "online",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Statut",
+                "type": "info",
+                "subtype": "string",
+                "display": {
+					"generic_type": "ENERGY_STATE"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "status::power",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Humidité",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"generic_type": "HUMIDITY"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+				"unite" : "%",
+                "logicalId": "status::humidity",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Température",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"generic_type": "TEMPERATURE"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+				"unite" : "°",
+                "logicalId": "status::temp_dec",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Angle Rotation",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+				"unite" : "°",
+                "logicalId": "status::angle",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Rotation",
+                "type": "info",
+                "subtype": "string",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+				"unite" : "",
+                "logicalId": "status::angle_enable",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Moteur",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+				"unite" : "rpm",
+                "logicalId": "status::speed",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Vitesse",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+				"unite" : "%",
+                "logicalId": "status::speed_level",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Vitesse Naturelle",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+				"unite" : "%",
+                "logicalId": "status::natural_level",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Statut buzzer",
+                "type": "info",
+                "subtype": "string",
+                "isVisible": 0,
+                "logicalId": "status::buzzer"
+            },
+			{
+                "name": "Statut led",
+                "type": "info",
+                "subtype": "string",
+                "isVisible": 0,
+                "logicalId": "status::led"
+            },
+			{
+                "name": "Directe",
+                "type": "action",
+                "subtype": "slider",
+                "configuration" : {
+        			"request" : "set_speed_level",
+                    "minValue" : 0,
+                    "maxValue" : 100,
+					"params" : "[#slider#]"
+        		},
+                "value": "Vitesse",
+                "isVisible": 1,
+                "logicalId": "fanspeedAct"
+            },
+			{
+                "name": "Naturelle",
+                "type": "action",
+                "subtype": "slider",
+                "configuration" : {
+        			"request" : "set_natural_level",
+                    "minValue" : 0,
+                    "maxValue" : 100,
+					"params" : "[#slider#]"
+        		},
+                "value": "Vitesse Naturelle",
+                "isVisible": 1,
+                "logicalId": "fanspeednaturalAct"
+            },
+			{
+                "name": "Oscillation",
+                "type": "action",
+                "subtype": "slider",
+                "configuration" : {
+        			"request" : "set_angle",
+                    "minValue" : 30,
+                    "maxValue" : 120,
+					"params" : "[#slider#]"
+        		},
+                "value": "Angle Rotation",
+                "isVisible": 1,
+                "logicalId": "angleAct"
+            },
+            {
+                "name": "Démarrer",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-play\"><\/i>",
+					"generic_type": "ENERGY_ON"
+                },
+                "configuration" : {
+        			"request" : "set_power",
+					"params" : "[\"on\"]"
+        		},
+                "isVisible": 1,
+                "logicalId": "on"
+            },
+            {
+                "name": "Arrêter",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-stop\"><\/i>",
+					"generic_type": "ENERGY_OFF"
+                },
+                "configuration" : {
+        			"request" : "set_power",
+					"params" : "[\"off\"]"
+        		},
+                "isVisible": 1,
+                "logicalId": "off"
+            },
+            {
+                "name": "Activer rotation",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"icon divers-triangular42\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_angle_enable",
+					"params" : "[\"on\"]"
+        		},
+                "isVisible": 1,
+                "logicalId": "rotationon"
+            },
+			{
+			    "name": "Désactiver rotation",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"icon techno-electric9\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_angle_enable",
+					"params" : "[\"off\"]"
+        		},
+                "isVisible": 1,
+                "logicalId": "rotationoff"
+            },
+			{
+			    "name": "Tourner à gauche",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-arrow-left\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_move",
+					"params" : "[\"left\"]"
+        		},
+                "isVisible": 1,
+                "logicalId": "moveleft"
+            },
+			{
+			    "name": "Tourner à droite",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-arrow-right\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_move",
+					"params" : "[\"right\"]"
+        		},
+                "isVisible": 1,
+                "logicalId": "moveright"
+            },
+			{
+                "name": "Buzzer On",
+                "type": "action",
+                "subtype": "other",
+                "configuration" : {
+        			"request" : "set_buzzer",
+					"params" : "[\"on\"]"
+        		},
+                "isVisible": 0,
+                "logicalId": "buzzon"
+            },
+			{
+                "name": "Buzzer Off",
+                "type": "action",
+                "subtype": "other",
+                "configuration" : {
+        			"request" : "set_buzzer",
+					"params" : "[\"off\"]"
+        		},
+                "isVisible": 0,
+                "logicalId": "buzzoff"
+            },
+			{
+                "name": "Diode",
+                "type": "action",
+                "subtype": "slider",
+                "configuration" : {
+        			"request" : "set_led_b",
+                    "minValue" : 0,
+                    "maxValue" : 2,
+					"params" : "[#slider#]"
+        		},
+                "isVisible": 0,
+                "logicalId": "ledb"
+            },
+			{
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"generic_type": "BATTERY"
+                },
+                "isVisible": 0,
+                "isHistorized": 0,
+				"unite" : "%",
+                "logicalId": "status::battery",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			 {
+                "name": "Rafraichir",
+                "type": "action",
+                "subtype": "other",
+				"display": {
+					"icon": "<i class=\"fa fa-refresh\"><\/i>"
+                },
+                "isVisible": 1,
+                "logicalId": "refresh"
+            }
+        ]
+    }
+}

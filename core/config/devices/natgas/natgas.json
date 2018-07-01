@@ -1,0 +1,73 @@
+{
+    "natgas": {
+        "name": "Détecteur de Gaz",
+		"groupe" : "Aquara",
+		"configuration" : {
+			"model" : "natgas",
+            "type" : "aquara"
+		},
+        "commands": [
+			{
+                "name": "Alarme",
+                "type": "info",
+                "subtype": "binary",
+                "display": {
+					"generic_type": "SMOKE",
+			"invertBinary": 1
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "alarm",
+				"template": {
+					"dashboard": "alert",
+					"mobile": "alert"
+				}
+            },
+            {
+                "name": "Densité gaz",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"generic_type": "GENERIC"
+                },
+                "isVisible": 0,
+                "isHistorized": 0,
+                "logicalId": "density",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Pile Voltage",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fa fa-battery-full\"><\/i>",
+					"generic_type": "DONT"
+				},
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "V",
+                "logicalId": "voltage",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+            {
+                "name": "Rafraichir",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+                    "generic_type": "DONT"
+                },
+                "configuration" : {
+                    "switch" : "read"
+                },
+                "isVisible": 0,
+                "logicalId": "refresh"
+            }
+        ]
+    }
+}

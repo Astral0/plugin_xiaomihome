@@ -1,0 +1,206 @@
+{
+	"philipseyecare": {
+		"name": "Lampe Philips Eyecare",
+		"groupe" : "Wifi",
+		"configuration" : {
+			"model" : "philipseyecare",
+			"type" : "wifi"
+		},
+        "commands": [
+            {
+                "name": "Online",
+                "type": "info",
+                "subtype": "binary",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 0,
+                "isHistorized": 0,
+                "logicalId": "online",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Statut",
+                "type": "info",
+                "subtype": "string",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "status::power",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Statut eyecare",
+                "type": "info",
+                "subtype": "string",
+                "display": {
+					"generic_type": "DONT",
+					"icon": "<i class=\"fa fa-eye\"><\/i>"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "status::eyecare",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Scene eyecare",
+                "type": "info",
+                "subtype": "string",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "status::scene_num",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+            {
+                "name": "Allumer",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-lightbulb-o\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_power",
+					"params" : "[\"on\"]"
+        		},
+                "isVisible": 1,
+                "logicalId": "on"
+            },
+            {
+                "name": "Eteindre",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-power-off\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_power",
+					"params" : "[\"off\"]"
+        		},
+                "isVisible": 1,
+                "logicalId": "off"
+            },
+			{
+                "name": "Eyecare on",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-eye\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_eyecare",
+					"params" : "[\"on\"]"
+        		},
+                "isVisible": 1,
+                "logicalId": "eyecare"
+            },
+			{
+                "name": "Eyecare off",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-eye-slash\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_eyecare",
+					"params" : "[\"off\"]"
+        		},
+                "isVisible": 1,
+                "logicalId": "eyecareoff"
+            },
+			{
+                "name": "Eycare enfant",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"icon personne-boy22\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_user_scene",
+					"params" : "[1]"
+        		},
+                "isVisible": 1,
+                "logicalId": "scennumkids"
+            },
+			{
+                "name": "Eycare Lecture",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-book\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_user_scene",
+					"params" : "[2]"
+        		},
+                "isVisible": 1,
+                "logicalId": "scennumread"
+            },
+			{
+                "name": "Eycare Ordinateur",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-laptop\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_user_scene",
+					"params" : "[3]"
+        		},
+                "isVisible": 1,
+                "logicalId": "scennumcomputer"
+            },
+			{
+                "name": "Luminosité",
+                "type": "action",
+                "subtype": "slider",
+				"display": {
+					"forceReturnLineBefore": 1
+                },
+                "configuration" : {
+        			"request" : "set_bright",
+                    "minValue" : 0,
+                    "maxValue" : 100,
+					"params" : "[#slider#]"
+        		},
+				"value" : "Luminosité info",
+                "isVisible": 1,
+                "logicalId": "bright"
+            },
+			{
+                "name": "Luminosité info",
+                "type": "info",
+                "subtype": "numeric",
+				"unite": "%",
+                "isVisible": 0,
+                "logicalId": "status::bright"
+            },
+			 {
+                "name": "Rafraichir",
+                "type": "action",
+                "subtype": "other",
+				"display": {
+					"icon": "<i class=\"fa fa-refresh\"><\/i>"
+                },
+                "isVisible": 1,
+                "logicalId": "refresh"
+            }
+        ]
+    }
+}

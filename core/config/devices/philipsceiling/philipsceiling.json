@@ -1,0 +1,275 @@
+{
+	"philipsceiling": {
+		"name": "Lampe Philips Ceiling",
+		"groupe" : "Wifi",
+		"configuration" : {
+			"model" : "philipsceiling",
+			"type" : "wifi"
+		},
+        "commands": [
+            {
+                "name": "Online",
+                "type": "info",
+                "subtype": "binary",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 0,
+                "isHistorized": 0,
+                "logicalId": "online",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Statut",
+                "type": "info",
+                "subtype": "string",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "status::power",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Smart Midnight Light",
+                "type": "info",
+                "subtype": "binary",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "status::bl",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Auto CCT",
+                "type": "info",
+                "subtype": "binary",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "status::ac",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Scene active",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "status::snm",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+            {
+                "name": "Allumer",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-lightbulb-o\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_power",
+					"params" : "[\"on\"]"
+        		},
+                "isVisible": 1,
+                "logicalId": "on"
+            },
+            {
+                "name": "Eteindre",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-power-off\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "set_power",
+					"params" : "[\"off\"]"
+        		},
+                "isVisible": 1,
+                "logicalId": "off"
+            },
+            {
+                "name": "Scene Bright",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-sun-o\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "apply_fixed_scene",
+					"params" : "[1]"
+        		},
+                "isVisible": 1,
+                "logicalId": "brightscene"
+            },
+            {
+                "name": "Scene TV",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-desktop\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "apply_fixed_scene",
+					"params" : "[2]"
+        		},
+                "isVisible": 1,
+                "logicalId": "tv"
+            },
+            {
+                "name": "Scene Warm",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-fire\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "apply_fixed_scene",
+					"params" : "[3]"
+        		},
+                "isVisible": 1,
+                "logicalId": "warm"
+            },
+            {
+                "name": "Scene Midnight",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+					"icon": "<i class=\"fa fa-moon-o\"><\/i>"
+                },
+                "configuration" : {
+        			"request" : "apply_fixed_scene",
+					"params" : "[4]"
+        		},
+                "isVisible": 1,
+                "logicalId": "midnight"
+            },
+			{
+                "name": "Smart Midnight Light on",
+                "type": "action",
+                "subtype": "other",
+                "configuration" : {
+        			"request" : "enable_bl",
+					"params" : "[1]"
+        		},
+                "isVisible": 0,
+                "logicalId": "veilleuseon"
+            },
+            {
+                "name": "Smart Midnight Light off",
+                "type": "action",
+                "subtype": "other",
+                "configuration" : {
+        			"request" : "enable_bl",
+					"params" : "[0]"
+        		},
+                "isVisible": 0,
+                "logicalId": "veilleuseoff"
+            },
+			{
+                "name": "Auto CCT on",
+                "type": "action",
+                "subtype": "other",
+                "configuration" : {
+        			"request" : "enable_ac",
+					"params" : "[1]"
+        		},
+                "isVisible": 0,
+                "logicalId": "ccton"
+            },
+            {
+                "name": "Auto CCT off",
+                "type": "action",
+                "subtype": "other",
+                "configuration" : {
+        			"request" : "enable_ac",
+					"params" : "[0]"
+        		},
+                "isVisible": 0,
+                "logicalId": "cctoff"
+            },
+			{
+                "name": "Luminosité",
+                "type": "action",
+                "subtype": "slider",
+				"display": {
+					"forceReturnLineBefore": 1
+                },
+                "configuration" : {
+        			"request" : "set_bright",
+                    "minValue" : 0,
+                    "maxValue" : 100,
+					"params" : "[#slider#]"
+        		},
+				"value" : "Luminosité info",
+                "isVisible": 1,
+                "logicalId": "bright"
+            },
+			{
+                "name": "Luminosité info",
+                "type": "info",
+                "subtype": "numeric",
+				"unite": "%",
+                "isVisible": 0,
+                "logicalId": "status::bright"
+            },
+			{
+                "name": "Couleur de blanc",
+                "type": "action",
+                "subtype": "slider",
+				"display": {
+					"forceReturnLineBefore": 1
+                },
+                "configuration" : {
+        			"request" : "set_cct",
+                    "minValue" : 1,
+                    "maxValue" : 100,
+					"params" : "[#slider#]"
+        		},
+				"value" : "Couleur de blanc info",
+                "isVisible": 1,
+                "logicalId": "cct"
+            },
+			{
+                "name": "Couleur de blanc info",
+                "type": "info",
+                "subtype": "numeric",
+				"unite": "%",
+                "isVisible": 0,
+                "logicalId": "status::cct"
+            },
+			 {
+                "name": "Rafraichir",
+                "type": "action",
+                "subtype": "other",
+				"display": {
+					"icon": "<i class=\"fa fa-refresh\"><\/i>"
+                },
+                "isVisible": 1,
+                "logicalId": "refresh"
+            }
+        ]
+    }
+}

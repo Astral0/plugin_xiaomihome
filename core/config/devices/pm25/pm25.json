@@ -1,0 +1,73 @@
+{
+	"pm25": {
+		"name": "Capteur de qualité d'air",
+		"groupe" : "Wifi",
+		"configuration" : {
+			"model" : "pm25",
+			"type" : "wifi",
+			"battery_type" : "Batterie"
+		},
+        "commands": [
+            {
+                "name": "Online",
+                "type": "info",
+                "subtype": "binary",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 0,
+                "isHistorized": 0,
+                "logicalId": "online",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Qualité",
+                "type": "info",
+                "subtype": "numeric",
+				"unite" : "ug/m3",
+                "display": {
+					"generic_type": "DONT"
+                },
+				"display": {
+					"icon": "<i class=\"icon nature-plant30\"><\/i>"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "status::aqi",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"generic_type": "DONT"
+                },
+                "isVisible": 0,
+                "isHistorized": 0,
+				"unite" : "%",
+                "logicalId": "status::battery",
+                "template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Rafraichir",
+                "type": "action",
+                "subtype": "other",
+				"display": {
+					"icon": "<i class=\"fa fa-refresh\"><\/i>"
+                },
+                "isVisible": 1,
+                "logicalId": "refresh"
+            }
+        ]
+    }
+}

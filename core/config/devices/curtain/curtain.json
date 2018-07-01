@@ -1,0 +1,67 @@
+{
+  "curtain": {
+    "name": "Rideau",
+    "groupe" : "Aquara",
+    "configuration" : {
+      "model" : "curtain",
+      "type" : "aquara"
+    },
+    "commands": [
+      {
+        "name": "Niveau Ouverture",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "curtain_level"
+      },
+      {
+        "name": "Définir Ouverture",
+        "type": "action",
+        "subtype": "slider",
+        "configuration" : {
+          "switch" : "curtain_level",
+          "request" : "curtain_level",
+          "minValue" : 0,
+          "maxValue" : 100
+        },
+        "value": "Niveau Ouverture",
+        "isVisible": 1,
+        "logicalId": "curtain_level-set"
+      },
+      {
+        "name": "Statut",
+        "type": "info",
+        "subtype": "string",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "logicalId": "status"
+      },
+      {
+        "name": "Définir Statut",
+        "type": "action",
+        "subtype": "select",
+        "configuration" : {
+            "switch" : "status",
+            "listValue" : "open|Ouvert;close|Fermé;stop|Arrêt;auto|Automatique"
+        },
+        "value": "Statut",
+        "isVisible": 1,
+        "logicalId": "status-set"
+      },
+      {
+          "name": "Rafraichir",
+          "type": "action",
+          "subtype": "other",
+          "display": {
+              "generic_type": "DONT"
+          },
+          "configuration" : {
+              "switch" : "read"
+          },
+          "isVisible": 0,
+          "logicalId": "refresh"
+      }
+    ]
+  }
+}
