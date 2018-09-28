@@ -53,7 +53,7 @@ DICT_STATE_WIFI ={'vacuum' : {
 								14: 'Mise à jour en cours',
 								15: 'Mise en place sur la base',
 								16: 'Je me dirige vers la cible',
-								16: 'Nettoyage de Zone'
+								17: 'Nettoyage de Zone'
 							},
 				'vacuum2' : {
 								1: 'Démarrage',
@@ -72,7 +72,7 @@ DICT_STATE_WIFI ={'vacuum' : {
 								14: 'Mise à jour en cours',
 								15: 'Mise en place sur la base',
 								16: 'Je me dirige vers la cible',
-								16: 'Nettoyage de Zone'
+								17: 'Nettoyage de Zone'
 							}
 }
 
