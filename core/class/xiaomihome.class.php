@@ -22,9 +22,13 @@ class xiaomihome extends eqLogic {
         $eqLogics = eqLogic::byType('xiaomihome', true);
         foreach ($eqLogics as $eqLogic) {
             if ($eqLogic->getConfiguration('type') == 'yeelight') {
+              if ($eqLogic->pingHost($eqLogic->getConfiguration('gateway')) == false) {
+                  log::add('xiaomihome', 'debug', 'Equipement Yeelight déconnecté : ' . $eqLogic->getName());
+              } else {
                 log::add('xiaomihome', 'debug', 'Rafraîchissement de Yeelight : ' . $eqLogic->getName());
-                $refreshcmd = xiaomihomeCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'refresh');
-                $refreshcmd->execCmd();
+                $value = json_encode(array('apikey' => jeedom::getApiKey('xiaomihome'), 'type' => 'yeelight','cmd' => 'refresh', 'model' => $eqLogic->getConfiguration('model'), 'dest' => $eqLogic->getConfiguration('gateway') , 'token' => $eqLogic->getConfiguration('password') , 'devtype' => $eqLogic->getConfiguration('short_id'), 'serial' => $eqLogic->getConfiguration('sid'), 'id' => $eqLogic->getLogicalId()));
+                xiaomihome::sendDaemon($value);
+              }  
             }
         }
     }
@@ -37,9 +41,13 @@ class xiaomihome extends eqLogic {
         $eqLogics = eqLogic::byType('xiaomihome', true);
         foreach($eqLogics as $xiaomihome) {
             if ($xiaomihome->getConfiguration('type') == 'wifi') {
+              if ($xiaomihome->pingHost($xiaomihome->getConfiguration('ipwifi')) == false) {
+                  log::add('xiaomihome', 'debug', 'Offline Wifi : ' . $xiaomihome->getName());
+              } else {
                 log::add('xiaomihome', 'debug', 'Rafraîchissement de XiaomiWifi : ' . $xiaomihome->getName());
-                $refreshcmd = xiaomihomeCmd::byEqLogicIdAndLogicalId($xiaomihome->getId(),'refresh');
-                $refreshcmd->execCmd();
+                $value = json_encode(array('apikey' => jeedom::getApiKey('xiaomihome'), 'type' => 'wifi','cmd' => 'refresh', 'model' => $xiaomihome->getConfiguration('model'), 'dest' => $xiaomihome->getConfiguration('gateway') , 'token' => $xiaomihome->getConfiguration('password') , 'devtype' => $xiaomihome->getConfiguration('short_id'), 'serial' => $xiaomihome->getConfiguration('sid')));
+                xiaomihome::sendDaemon($value);
+              }
             }
             if ($xiaomihome->getConfiguration('type') == 'aquara' && $xiaomihome->getConfiguration('model') == 'gateway') {
                 log::add('xiaomihome', 'debug', 'Rafraîchissement de Aqara : ' . $xiaomihome->getName());
@@ -265,7 +273,7 @@ class xiaomihome extends eqLogic {
             socket_close($socket);
         }
     }
-    
+
     public function inclusion_mode(){
         $value = json_encode(array('apikey' => jeedom::getApiKey('xiaomihome'), 'type' => 'aquara','cmd' => 'send', 'password' => $this->getConfiguration('password',''),'sidG' => $this->getConfiguration('sid'), 'dest' => $this->getConfiguration('gateway') , 'token' => $this->getConfiguration('password') , 'model' => $this->getConfiguration('model'), 'sid' => $this->getConfiguration('sid'), 'short_id' => $this->getConfiguration('short_id'),'switch' => 'join_permission', 'request' => 'yes'));
         $socket = socket_create(AF_INET, SOCK_STREAM, 0);

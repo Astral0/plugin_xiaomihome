@@ -3,7 +3,7 @@ import time
 from devices.yeelight.flow import *
 JEEDOM_COM = ''
 log_level = "error"
-pidfile = '/tmp/blead.pid'
+pidfile = '/tmp/xiaomihome.pid'
 apikey = ''
 callback = ''
 cycle = 0.3
