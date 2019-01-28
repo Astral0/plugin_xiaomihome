@@ -107,7 +107,7 @@ class jeedom_com():
 		i=0
 		while i < self.retry:
 			try:
-				r = requests.post(self.url + '?apikey=' + self.apikey, json=change, timeout=(0.5, 120), verify=False)
+				r = requests.post(self.url + '?apikey=' + self.apikey, json=change, timeout=(0.5, 120), verify=True)
 				if r.status_code == requests.codes.ok:
 					break
 			except Exception as error:
@@ -131,7 +131,7 @@ class jeedom_com():
 
 	def test(self):
 		try:
-			response = requests.get(self.url + '?apikey=' + self.apikey, verify=False)
+			response = requests.get(self.url + '?apikey=' + self.apikey, verify=True)
 			if response.status_code != requests.codes.ok:
 				logging.error('Callback error: %s %s. Please check your network configuration page'% (response.status.code, response.status.message,))
 				return False

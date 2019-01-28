@@ -189,11 +189,16 @@ class xiaomihome extends eqLogic {
         if ($deamon_info['launchable'] != 'ok') {
             throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
         }
+	if (config::byKey('network::disableMangement')) {
+		$url = network::getNetworkAccess('internal');
+	} else {
+		$url = network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp');
+	}
         $xiaomihome_path = realpath(dirname(__FILE__) . '/../../resources/xiaomihomed');
         $cmd = '/usr/bin/python ' . $xiaomihome_path . '/xiaomihomed.py';
         $cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('xiaomihome'));
         $cmd .= ' --socketport ' . config::byKey('socketport', 'xiaomihome');
-        $cmd .= ' --callback ' . network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/xiaomihome/core/php/jeeXiaomiHome.php';
+        $cmd .= ' --callback ' . $url . '/plugins/xiaomihome/core/php/jeeXiaomiHome.php';
         $cmd .= ' --apikey ' . jeedom::getApiKey('xiaomihome');
         $cmd .= ' --cycle ' . config::byKey('cycle', 'xiaomihome');
         $cmd .= ' --pid ' . jeedom::getTmpFolder('xiaomihome') . '/deamon.pid';
